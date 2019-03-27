@@ -20,7 +20,11 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserMapper userMapper;
 
-
+    /*
+     * 查找所用用户
+     * @author Reich
+     * @date 2019/3/27
+     */
     @Override
     public List<User> findAllUser() {
 
