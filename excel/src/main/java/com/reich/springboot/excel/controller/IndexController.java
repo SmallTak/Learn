@@ -14,7 +14,7 @@ public class IndexController {
     private ITestService testService;
 
     @GetMapping
-    public  String home(){
+    public String home() {
         return "upload";
     }
 
@@ -28,6 +28,6 @@ public class IndexController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return  a;
+        return a;
     }
 }
