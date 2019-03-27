@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:c="http://www.w3.org/1999/XSL/Transform"
+      xmlns:td="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>首页</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/paging.css">
+    <link rel="stylesheet" href="/css/webuploader.css">
+
+</head>
+<body>
+
+<div class="container">
+    <h3>movie Crud demo</h3>
+    <h2>____________________________________________________________________</h2>
+    <div class="box-body">
+        <form class="form-inline" th:action="@{/sendEmail}">
+            <input type="text" class="form-control" name="title" placeholder="请输入邮箱">
+            <input type="text" class="form-control" name="description" placeholder="请输入内容">
+            <button class="btn btn-default">搜索</button>
+        </form>
+    </div>
+
+
+    <div id="uploader" class="wu-example">
+        <!--用来存放文件信息-->
+        <div id="thelist" class="uploader-list"></div>
+        <div class="btns">
+            <div id="picker">选择文件</div>
+            <button id="ctlBtn" class="btn btn-default">开始上传</button>
+        </div>
+    </div>
+
+
+    <form id="fileForm" action="/upload" method="POST" enctype="multipart/form-data">
+        <input id="file" type="file" name="file"/>
+        <input id="btnSubmitFile" type="button" value="upload file to /upload"/>
+    </form>
+
+
+    <ul id="pagination-demo" class="pagination pull-right"></ul>
+</div>
+
+<script src="/bootstrap/js/jquery.min.js"></script>
+<script src="/plugins/jQuery/jquery.twbsPagination.min.js"></script>
+<script src="/plugins/layer/layer.js"></script>
+<script type="text/javascript" src="js/webuploader.js"></script>
+
+
+<script>
+
+    $(function () {
+
+        $("#btnSubmitFile").click(function () {
+            var form = new FormData(document.getElementById("fileForm"));
+            $.ajax({
+                url: "http://localhost:8080/test/import",
+                type: "post",
+                data: form,
+                processData: false,
+                contentType: false,
+                success: function(data) {
+                    $("#outputDiv").html(data);
+                },
+                error: function(e) {
+                    console.log(e);
+                }
+            });
+        });
+
+    });
+
+    var uploader = WebUploader.create({
+
+        // swf文件路径
+        swf: '/static/plugins/uploader/Uploader.swf',
+
+        // 文件接收服务端。
+        server: 'http://localhost:8080/import',
+
+        // 选择文件的按钮。可选。
+        // 内部根据当前运行是创建，可能是input元素，也可能是flash.
+        pick: '#picker',
+
+        // 不压缩image, 默认如果是jpeg，文件上传前会压缩一把再上传！
+        resize: false
+    });
+
+    // 当有文件被添加进队列的时候
+    uploader.on( 'fileQueued', function( file ) {
+        $list.append( '<div id="' + file.id + '" class="item">' +
+            '<h4 class="info">' + file.name + '</h4>' +
+            '<p class="state">等待上传...</p>' +
+            '</div>' );
+    });
+
+    // 文件上传过程中创建进度条实时显示。
+    uploader.on( 'uploadProgress', function( file, percentage ) {
+        var $li = $( '#'+file.id ),
+            $percent = $li.find('.progress .progress-bar');
+
+        // 避免重复创建
+        if ( !$percent.length ) {
+            $percent = $('<div class="progress progress-striped active">' +
+                '<div class="progress-bar" role="progressbar" style="width: 0%">' +
+                '</div>' +
+                '</div>').appendTo( $li ).find('.progress-bar');
+        }
+
+        $li.find('p.state').text('上传中');
+
+        $percent.css( 'width', percentage * 100 + '%' );
+    });
+
+    uploader.on( 'uploadSuccess', function( file ) {
+        $( '#'+file.id ).find('p.state').text('已上传');
+    });
+
+    uploader.on( 'uploadError', function( file ) {
+        $( '#'+file.id ).find('p.state').text('上传出错');
+    });
+
+    uploader.on( 'uploadComplete', function( file ) {
+        $( '#'+file.id ).find('.progress').fadeOut();
+    });
+
+</script>
+<!--<script>-->
+<!--$(function () {-->
+<!--var pag = $("#lastNum").text();-->
+<!--$('#pagination-demo').twbsPagination({-->
+<!--totalPages:pag/10+1,-->
+<!--visiblePages: 10,-->
+<!--first:'首页',-->
+<!--last:'末页',-->
+<!--prev:'上一页',-->
+<!--next:'下一页',-->
+<!--href:"?p={{number}}"-->
+<!--});-->
+<!--$("#director").click(function () {-->
+<!--})-->
+<!--$(".del").click(function (){-->
+<!--var id = $(this).attr("rel");-->
+<!--layer.confirm("确定要删除么？",function (index) {-->
+<!--layer.close(index);-->
+<!--$.get("/movie/"+id+"/del").done(function (result) {-->
+<!--if(result.status == 'success') {-->
+<!--history.go(0);-->
+<!--} else {-->
+<!--layer.msg(result.message);-->
+<!--}-->
+<!--}).error(function () {-->
+<!--layer.msg("服务器忙");-->
+<!--});-->
+<!--})-->
+<!--})-->
+<!--})-->
+<!--</script>-->
+
+</body>
+</html>

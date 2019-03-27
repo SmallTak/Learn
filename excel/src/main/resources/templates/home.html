@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:c="http://www.w3.org/1999/XSL/Transform"
+      xmlns:td="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>首页</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/paging.css">
+    <link rel="stylesheet" href="/css/webuploader.css">
+
+</head>
+<body>
+
+<div class="container">
+    <h3>movie Crud demo</h3>
+    <h2>____________________________________________________________________</h2>
+    <div class="box-body">
+        <form class="form-inline" th:action="@{/sendEmail}">
+            <input type="text" class="form-control" name="title" placeholder="请输入邮箱">
+            <input type="text" class="form-control" name="description" placeholder="请输入内容">
+            <button class="btn btn-default">搜索</button>
+        </form>
+    </div>
+
+    <ul id="pagination-demo" class="pagination pull-right"></ul>
+</div>
+
+<script src="/bootstrap/js/jquery.min.js"></script>
+<script src="/plugins/jQuery/jquery.twbsPagination.min.js"></script>
+<script src="/plugins/layer/layer.js"></script>
+<script type="text/javascript" src="js/webuploader.js"></script>
+
+<!--<script>-->
+<!--$(function () {-->
+<!--var pag = $("#lastNum").text();-->
+<!--$('#pagination-demo').twbsPagination({-->
+<!--totalPages:pag/10+1,-->
+<!--visiblePages: 10,-->
+<!--first:'首页',-->
+<!--last:'末页',-->
+<!--prev:'上一页',-->
+<!--next:'下一页',-->
+<!--href:"?p={{number}}"-->
+<!--});-->
+<!--$("#director").click(function () {-->
+<!--})-->
+<!--$(".del").click(function (){-->
+<!--var id = $(this).attr("rel");-->
+<!--layer.confirm("确定要删除么？",function (index) {-->
+<!--layer.close(index);-->
+<!--$.get("/movie/"+id+"/del").done(function (result) {-->
+<!--if(result.status == 'success') {-->
+<!--history.go(0);-->
+<!--} else {-->
+<!--layer.msg(result.message);-->
+<!--}-->
+<!--}).error(function () {-->
+<!--layer.msg("服务器忙");-->
+<!--});-->
+<!--})-->
+<!--})-->
+<!--})-->
+<!--</script>-->
+
+</body>
+</html>
