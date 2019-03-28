@@ -39,7 +39,6 @@ public class UserServiceImpl implements UserService {
     public User selectById(Integer id) {
 
         User user = userMapper.selectById(id);
-        System.out.println(user.toString());
         return user;
 
     }
