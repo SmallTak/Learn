@@ -3,13 +3,15 @@ import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.stereotype.Component;
 
 import java.util.concurrent.TimeUnit;
 
-
+@Component
 public class RedisCacheHelper {
 
     private RedisTemplate redisTemplate;
+
     @Autowired
     public void setRedisTemplate(RedisTemplate redisTemplate) {
         this.redisTemplate = redisTemplate;
@@ -24,7 +26,9 @@ public class RedisCacheHelper {
       */
     public Object get(String key, Class clazz){
         if (redisTemplate.hasKey(key)){
+            System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
             String str = (String) redisTemplate.opsForValue().get(key);
+            System.out.println("????????????????????????????????????");
             return new Gson().fromJson(str, clazz);
         }
         return null;

@@ -1,16 +1,15 @@
 package com.springboot.demo.service.impl;
 
-import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.google.gson.Gson;
+import com.springboot.demo.cache.RedisCacheHelper;
 import com.springboot.demo.entity.User;
 import com.springboot.demo.mapper.UserMapper;
 import com.springboot.demo.service.UserService;
 import org.junit.Assert;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 import org.springframework.stereotype.Service;
 
@@ -31,19 +30,8 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private RedisTemplate redisTemplate;
 
-    /*
-     * redis
-     * @author Reich
-     * @date 2019/3/28
-     */
     @Autowired
-    public void setRedisTemplate(RedisTemplate redisTemplate){
-
-        this.redisTemplate = redisTemplate;
-        this.redisTemplate.setKeySerializer(new StringRedisSerializer());
-        this.redisTemplate.setValueSerializer(new StringRedisSerializer());
-
-    }
+    private RedisCacheHelper redisCacheHelper;
 
     /*
      * 查找所用用户
@@ -63,18 +51,23 @@ public class UserServiceImpl implements UserService {
     @Override
     public User selectById(Integer id) {
 
-        String userKey = "user" + id;
+//        String userKey = "user:" + id;
+//        User user = (User) redisCacheHelper.get(userKey,User.class);
+//        if (user == null){
+//            user = userMapper.selectById(id);
+//            redisCacheHelper.set(userKey, user, 1000);
+//        }
+//        return user;
 
-        User user = null;
-        if (redisTemplate.opsForValue().get(userKey) == null){
+        //使用redisCacheHelper工具类
+        String userkey = "user:" + id;
+        User user = (User) redisCacheHelper.get(userkey, User.class);
+        if (user == null){
             user = userMapper.selectById(id);
-            redisTemplate.opsForValue().set(userKey, user);
-        }else {
-            String json = (String) redisTemplate.opsForValue().get(userKey);
-            user = new Gson().fromJson(json, User.class);
+            redisCacheHelper.set(userkey, user, 1000);
+            return user;
         }
         return user;
-
 
     }
 
