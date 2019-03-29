@@ -40,7 +40,7 @@ public class HomeController {
     @GetMapping("/page")
     public PageInfo<User> hey(@RequestParam(required = false, defaultValue = "1", name = "p") Integer pageNo){
         PageInfo<User> userPage = userService.findAllUserPage(pageNo);
-        logger.info("查询用户分页", userPage.getList().size());
+        logger.info("查询用户分页:{}", userPage.getList().size());
         return userPage;
     }
 
