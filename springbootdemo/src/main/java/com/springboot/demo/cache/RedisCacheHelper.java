@@ -14,9 +14,11 @@ public class RedisCacheHelper {
 
     @Autowired
     public void setRedisTemplate(RedisTemplate redisTemplate) {
+
         this.redisTemplate = redisTemplate;
         this.redisTemplate.setKeySerializer(new StringRedisSerializer());
         this.redisTemplate.setValueSerializer(new StringRedisSerializer());
+
     }
 
      /*
@@ -26,10 +28,10 @@ public class RedisCacheHelper {
       */
     public Object get(String key, Class clazz){
         if (redisTemplate.hasKey(key)){
-            System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+
             String str = (String) redisTemplate.opsForValue().get(key);
-            System.out.println("????????????????????????????????????");
             return new Gson().fromJson(str, clazz);
+
         }
         return null;
     }
@@ -39,8 +41,10 @@ public class RedisCacheHelper {
     * @date 2019/3/28
     */
     public  void  set(String key, Object obj){
+
         String json = new Gson().toJson(obj);
         redisTemplate.opsForValue().set(key, json);
+
     }
     /*添加缓存 并设置存活时间
      *
@@ -48,8 +52,10 @@ public class RedisCacheHelper {
      * @date 2019/3/28
      */
     public void set(String key, Object obj, long outTime){
+
         String json = new Gson().toJson(obj);
         redisTemplate.opsForValue().set(key, json,outTime, TimeUnit.SECONDS);
+
     }
    /*
     * 删除缓存
