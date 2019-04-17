@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.springboot.dm.mapper.SysSysauditlogMapper">
+  <resultMap id="BaseResultMap" type="com.springboot.dm.entity.SysSysauditlog">
+    <result column="userid" jdbcType="INTEGER" property="userid" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="sysdate" jdbcType="TIMESTAMP" property="sysdate" />
+    <result column="ip" jdbcType="VARCHAR" property="ip" />
+    <result column="handlename" jdbcType="VARCHAR" property="handlename" />
+    <result column="handledetail" jdbcType="VARCHAR" property="handledetail" />
+    <result column="handleflag" jdbcType="VARCHAR" property="handleflag" />
+    <result column="flag" jdbcType="INTEGER" property="flag" />
+    <result column="alias" jdbcType="VARCHAR" property="alias" />
+    <result column="code" jdbcType="VARCHAR" property="code" />
+    <result column="memo" jdbcType="VARCHAR" property="memo" />
+    <result column="btype" jdbcType="INTEGER" property="btype" />
+    <result column="dataid" jdbcType="VARCHAR" property="dataid" />
+    <result column="bcolumnid" jdbcType="CHAR" property="bcolumnid" />
+    <result column="outdate" jdbcType="TIMESTAMP" property="outdate" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    userid, username, sysdate, ip, handlename, handledetail, handleflag, flag, alias, 
+    code, memo, btype, dataid, bcolumnid, outdate
+  </sql>
+  <select id="selectByExample" parameterType="com.springboot.dm.entity.SysSysauditlogExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from sys_sysauditlog
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    <if test="limit != null">
+      <if test="offset != null">
+        limit ${offset}, ${limit}
+      </if>
+      <if test="offset == null">
+        limit ${limit}
+      </if>
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.springboot.dm.entity.SysSysauditlogExample">
+    delete from sys_sysauditlog
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.springboot.dm.entity.SysSysauditlog">
+    insert into sys_sysauditlog (userid, username, sysdate, 
+      ip, handlename, handledetail, 
+      handleflag, flag, alias, 
+      code, memo, btype, 
+      dataid, bcolumnid, outdate
+      )
+    values (#{userid,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{sysdate,jdbcType=TIMESTAMP}, 
+      #{ip,jdbcType=VARCHAR}, #{handlename,jdbcType=VARCHAR}, #{handledetail,jdbcType=VARCHAR}, 
+      #{handleflag,jdbcType=VARCHAR}, #{flag,jdbcType=INTEGER}, #{alias,jdbcType=VARCHAR}, 
+      #{code,jdbcType=VARCHAR}, #{memo,jdbcType=VARCHAR}, #{btype,jdbcType=INTEGER}, 
+      #{dataid,jdbcType=VARCHAR}, #{bcolumnid,jdbcType=CHAR}, #{outdate,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.springboot.dm.entity.SysSysauditlog">
+    insert into sys_sysauditlog
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userid != null">
+        userid,
+      </if>
+      <if test="username != null">
+        username,
+      </if>
+      <if test="sysdate != null">
+        sysdate,
+      </if>
+      <if test="ip != null">
+        ip,
+      </if>
+      <if test="handlename != null">
+        handlename,
+      </if>
+      <if test="handledetail != null">
+        handledetail,
+      </if>
+      <if test="handleflag != null">
+        handleflag,
+      </if>
+      <if test="flag != null">
+        flag,
+      </if>
+      <if test="alias != null">
+        alias,
+      </if>
+      <if test="code != null">
+        code,
+      </if>
+      <if test="memo != null">
+        memo,
+      </if>
+      <if test="btype != null">
+        btype,
+      </if>
+      <if test="dataid != null">
+        dataid,
+      </if>
+      <if test="bcolumnid != null">
+        bcolumnid,
+      </if>
+      <if test="outdate != null">
+        outdate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userid != null">
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="sysdate != null">
+        #{sysdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ip != null">
+        #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="handlename != null">
+        #{handlename,jdbcType=VARCHAR},
+      </if>
+      <if test="handledetail != null">
+        #{handledetail,jdbcType=VARCHAR},
+      </if>
+      <if test="handleflag != null">
+        #{handleflag,jdbcType=VARCHAR},
+      </if>
+      <if test="flag != null">
+        #{flag,jdbcType=INTEGER},
+      </if>
+      <if test="alias != null">
+        #{alias,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null">
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="memo != null">
+        #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="btype != null">
+        #{btype,jdbcType=INTEGER},
+      </if>
+      <if test="dataid != null">
+        #{dataid,jdbcType=VARCHAR},
+      </if>
+      <if test="bcolumnid != null">
+        #{bcolumnid,jdbcType=CHAR},
+      </if>
+      <if test="outdate != null">
+        #{outdate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.springboot.dm.entity.SysSysauditlogExample" resultType="java.lang.Long">
+    select count(*) from sys_sysauditlog
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update sys_sysauditlog
+    <set>
+      <if test="record.userid != null">
+        userid = #{record.userid,jdbcType=INTEGER},
+      </if>
+      <if test="record.username != null">
+        username = #{record.username,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sysdate != null">
+        sysdate = #{record.sysdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.ip != null">
+        ip = #{record.ip,jdbcType=VARCHAR},
+      </if>
+      <if test="record.handlename != null">
+        handlename = #{record.handlename,jdbcType=VARCHAR},
+      </if>
+      <if test="record.handledetail != null">
+        handledetail = #{record.handledetail,jdbcType=VARCHAR},
+      </if>
+      <if test="record.handleflag != null">
+        handleflag = #{record.handleflag,jdbcType=VARCHAR},
+      </if>
+      <if test="record.flag != null">
+        flag = #{record.flag,jdbcType=INTEGER},
+      </if>
+      <if test="record.alias != null">
+        alias = #{record.alias,jdbcType=VARCHAR},
+      </if>
+      <if test="record.code != null">
+        code = #{record.code,jdbcType=VARCHAR},
+      </if>
+      <if test="record.memo != null">
+        memo = #{record.memo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.btype != null">
+        btype = #{record.btype,jdbcType=INTEGER},
+      </if>
+      <if test="record.dataid != null">
+        dataid = #{record.dataid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bcolumnid != null">
+        bcolumnid = #{record.bcolumnid,jdbcType=CHAR},
+      </if>
+      <if test="record.outdate != null">
+        outdate = #{record.outdate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update sys_sysauditlog
+    set userid = #{record.userid,jdbcType=INTEGER},
+      username = #{record.username,jdbcType=VARCHAR},
+      sysdate = #{record.sysdate,jdbcType=TIMESTAMP},
+      ip = #{record.ip,jdbcType=VARCHAR},
+      handlename = #{record.handlename,jdbcType=VARCHAR},
+      handledetail = #{record.handledetail,jdbcType=VARCHAR},
+      handleflag = #{record.handleflag,jdbcType=VARCHAR},
+      flag = #{record.flag,jdbcType=INTEGER},
+      alias = #{record.alias,jdbcType=VARCHAR},
+      code = #{record.code,jdbcType=VARCHAR},
+      memo = #{record.memo,jdbcType=VARCHAR},
+      btype = #{record.btype,jdbcType=INTEGER},
+      dataid = #{record.dataid,jdbcType=VARCHAR},
+      bcolumnid = #{record.bcolumnid,jdbcType=CHAR},
+      outdate = #{record.outdate,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>
