@@ -1,4 +1,7 @@
-package com.yunfeiyang.email.util;
+package com.springboot.dm.util;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -10,6 +13,7 @@ public class RondomDateTest {
 
 //    private static final String BEGINDATE = "2019-03-10";
 //    private static final String ENDDATE = "2019-03-16";
+
 
 
     /**

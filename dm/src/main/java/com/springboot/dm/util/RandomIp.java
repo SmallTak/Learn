@@ -1,6 +1,6 @@
-package com.yunfeiyang.email.util;
+package com.springboot.dm.util;
 
-import org.testng.annotations.Test;
+import org.junit.Test;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
