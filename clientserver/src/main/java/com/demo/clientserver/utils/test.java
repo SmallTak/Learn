@@ -19,6 +19,7 @@ public class test {
         //将调用的接收到的json转为list
         List<User> userList = JSON.parseArray(data, User.class);
         userList.stream().forEach(System.err::println);
+        //输出结果
         System.out.println(userList.toString());
 
     }
