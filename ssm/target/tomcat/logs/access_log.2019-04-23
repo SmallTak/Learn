@@ -1,0 +1,4 @@
+0:0:0:0:0:0:0:1 - - [23/Apr/2019:15:13:28 +0800] "GET /product/2177 HTTP/1.1" 200 1048 http-bio-8081-exec-2 1362
+0:0:0:0:0:0:0:1 - - [23/Apr/2019:15:13:32 +0800] "GET /product/ HTTP/1.1" 200 15851 http-bio-8081-exec-3 804
+0:0:0:0:0:0:0:1 - - [23/Apr/2019:15:13:33 +0800] "GET /static/bootstrap/js/skin/default/layer.css?v=3.0.3303 HTTP/1.1" 404 1035 http-bio-8081-exec-4 5
+0:0:0:0:0:0:0:1 - - [23/Apr/2019:15:15:18 +0800] "GET /product/2177/edit HTTP/1.1" 200 4904 http-bio-8081-exec-6 347
