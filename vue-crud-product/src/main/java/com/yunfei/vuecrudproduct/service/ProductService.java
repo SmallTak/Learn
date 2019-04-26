@@ -29,4 +29,28 @@ public interface ProductService {
      * @return void
      */
     void saveProduct(Product product);
+
+    /*  根据id删除商品
+     *
+     * @date 2019/4/26
+     * @param [id]
+     * @return void
+     */
+    void delProductById(Integer id);
+
+    /*  根据id查找商品
+     *
+     * @date 2019/4/26
+     * @param [id]
+     * @return com.yunfei.vuecrudproduct.entity.Product
+     */
+    Product findProductById(Integer id);
+
+    /*  根据id修改商品
+     *
+     * @date 2019/4/26
+     * @param [id]
+     * @return void
+     */
+    void editProductById(Product product);
 }
