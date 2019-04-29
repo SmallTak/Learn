@@ -6,6 +6,7 @@ import com.yunfei.vuecrudproduct.entity.Product;
 import com.yunfei.vuecrudproduct.entity.ProductExample;
 import com.yunfei.vuecrudproduct.mapper.ProductMapper;
 import com.yunfei.vuecrudproduct.service.ProductService;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,10 +21,9 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public PageInfo<Product> selectAllProduct(Integer pageNo) {
         PageHelper.startPage(pageNo,10);
-        List<Product> products = productMapper.selectByExample(new ProductExample());
-//        ProductExample productExample = new ProductExample();
-//        productExample.createCriteria().andIdBetween(2194,2210);
-//        List<Product> products = productMapper.selectByExample(productExample);
+        ProductExample productExample = new ProductExample();
+        productExample.setOrderByClause("id DESC");
+        List<Product> products = productMapper.selectByExample(productExample);
         return new PageInfo<>(products);
     }
 
@@ -65,5 +65,13 @@ public class ProductServiceImpl implements ProductService {
 
         productMapper.updateByPrimaryKeySelective(product);
 
+    }
+
+    @Override
+    public void bathDelById(String arr) {
+        String[] split = StringUtils.split(arr, "{\"test\":},");
+        for (String s : split) {
+            productMapper.deleteByPrimaryKey(Integer.valueOf(s));
+        }
     }
 }

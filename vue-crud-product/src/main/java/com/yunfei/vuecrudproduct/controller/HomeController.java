@@ -1,10 +1,13 @@
 package com.yunfei.vuecrudproduct.controller;
 
 
+import com.alibaba.fastjson.JSONArray;
 import com.github.pagehelper.PageInfo;
+import com.yunfei.vuecrudproduct.controller.para.MyParam;
 import com.yunfei.vuecrudproduct.controller.resoult.ResponseBean;
 import com.yunfei.vuecrudproduct.entity.Product;
 import com.yunfei.vuecrudproduct.service.ProductService;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.bind.annotation.*;
@@ -12,6 +15,7 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @RestController
@@ -43,6 +47,13 @@ public class HomeController {
         return ResponseBean.success();
     }
 
+    @DeleteMapping("/bathDel")
+    public ResponseBean bathDel(@RequestBody String arr){//@PathVariable Integer[] attr
+
+        productService.bathDelById(arr);
+        return ResponseBean.success();
+    }
+
     @DeleteMapping("/{id}")
     public ResponseBean delProductById(@PathVariable Integer id){
         try {
@@ -70,28 +81,6 @@ public class HomeController {
         productService.editProductById(product);
         return ResponseBean.success();
     }
-
-//    private CorsConfiguration buildConfig() {
-//        CorsConfiguration corsConfiguration = new CorsConfiguration();
-//        //  你需要跨域的地址  注意这里的 127.0.0.1 != localhost
-//        // * 表示对所有的地址都可以访问
-//        corsConfiguration.addAllowedOrigin("http://localhost:8080");
-//        //  跨域的请求头
-//        corsConfiguration.addAllowedHeader("*"); // 2
-//        //  跨域的请求方法
-//        corsConfiguration.addAllowedMethod("*"); // 3
-//        //加上了这一句，大致意思是可以携带 cookie
-//        //最终的结果是可以 在跨域请求的时候获取同一个 session
-//        corsConfiguration.setAllowCredentials(true);
-//        return corsConfiguration;
-//    }
-//    @Bean
-//    public CorsFilter corsFilter() {
-//        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-//        //配置 可以访问的地址
-//        source.registerCorsConfiguration("/**", buildConfig()); // 4
-//        return new CorsFilter(source);
-//    }
 
 
 }

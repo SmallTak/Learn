@@ -53,4 +53,12 @@ public interface ProductService {
      * @return void
      */
     void editProductById(Product product);
+
+    /*  批量删除
+     *
+     * @date 2019/4/29
+     * @param [arr]  
+     * @return void  
+     */ 
+    void bathDelById(String arr);
 }
