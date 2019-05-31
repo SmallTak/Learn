@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>新增商品</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/plugins/datetimepicker/css/bootstrap-datetimepicker.css">
+</head>
+<body>
+
+<div class="container">
+
+
+    <br>
+    <br>
+    <h2>身份证匹配功能</h2>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
+
+        <!--<div class="form-group">-->
+            <!--<label>姓名</label>-->
+            <!--<input type="text" id="userName" name="userName" class="form-control">-->
+        <!--</div>-->
+        <!--<div class="form-group">-->
+            <!--<label>身份证号</label>-->
+            <!--<input type="text" id="userCard" name="userCard" class="form-control">-->
+        <!--</div>-->
+        <!--<div class="form-group">-->
+            <!--<button class="btn btn-primary">搜索</button>-->
+        <!--</div>-->
+
+
+    <div class="row">
+        <div class="col-lg-2">
+            <div class="input-group">
+                <input type="text" id="userName" name="userName" class="form-control" placeholder="请输入姓名...">
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="input-group">
+                <input type="text" id="userCard" name="userCard"  class="form-control" placeholder="请输入身份证号码...">
+                <span class="input-group-btn">
+                    <button class="btn btn-default" type="button">Go!</button>
+                </span>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+<script src="/js/jquery.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/moment.js"></script>
+<script src="/layer/layer.js"></script>
+<script src="/plugins/datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+<script src="/plugins/datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js"></script>
+
+<script>
+
+    $(function () {
+        $(".btn").click(function (){
+            var userName = $(" #userName").val();
+            var userCard = $(" #userCard").val();
+            var userNc = userName + userCard;
+            console.log(userNc);
+            $.get("/inter/" + userNc).done(function (result) {
+                if(result.status == 'success') {
+                    layer.msg("匹配成功");
+                    //history.go(0);
+                } else {
+                    layer.msg(result.message);                }
+            }).error(function () {
+                //layer.msg("服务器忙");
+            });
+        })
+    })
+
+</script>
+
+</body>
+</html>
