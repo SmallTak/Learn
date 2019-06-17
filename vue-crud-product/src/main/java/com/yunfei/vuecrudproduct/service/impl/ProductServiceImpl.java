@@ -4,7 +4,10 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.yunfei.vuecrudproduct.entity.Product;
 import com.yunfei.vuecrudproduct.entity.ProductExample;
+import com.yunfei.vuecrudproduct.entity.TAccount;
+import com.yunfei.vuecrudproduct.entity.TAccountExample;
 import com.yunfei.vuecrudproduct.mapper.ProductMapper;
+import com.yunfei.vuecrudproduct.mapper.TAccountMapper;
 import com.yunfei.vuecrudproduct.service.ProductService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,11 +21,14 @@ public class ProductServiceImpl implements ProductService {
     @Autowired
     private ProductMapper productMapper;
 
+    @Autowired
+    private TAccountMapper accountMapper;
+
     @Override
     public PageInfo<Product> selectAllProduct(Integer pageNo) {
         PageHelper.startPage(pageNo,10);
         ProductExample productExample = new ProductExample();
-        productExample.setOrderByClause("id DESC");
+        //productExample.setOrderByClause("id DESC");
         List<Product> products = productMapper.selectByExample(productExample);
         return new PageInfo<>(products);
     }
