@@ -82,8 +82,8 @@ export default {
         this.$router.push("/edit/" + id);
     },
     handleDelete:function (index, row) {
-        //var id = row.id;
-        var id = 2000001;
+        var id = row.id;
+        //var id = 2000001;
         this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {
           confirmButtonText: '确定',
           cancelButtonText: '取消',
