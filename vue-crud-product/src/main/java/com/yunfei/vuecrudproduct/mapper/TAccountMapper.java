@@ -21,7 +21,7 @@ public interface TAccountMapper {
 
     List<TAccount> selectByExample(TAccountExample example);
 
-    TAccount selectByPrimaryKey(String id);
+    TAccount selectByPrimaryKey(Integer id);
 
     int updateByExampleSelective(@Param("record") TAccount record, @Param("example") TAccountExample example);
 

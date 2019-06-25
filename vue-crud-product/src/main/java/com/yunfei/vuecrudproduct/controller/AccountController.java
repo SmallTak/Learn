@@ -29,7 +29,6 @@ public class AccountController {
             return ResponseBean.error(e.getMessage());
         }
 
-
     }
 
 }

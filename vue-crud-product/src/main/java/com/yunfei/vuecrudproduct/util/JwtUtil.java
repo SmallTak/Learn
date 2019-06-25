@@ -61,13 +61,13 @@ public class JwtUtil {
             jwtVerifier.verify(token);
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
-            throw new RuntimeException("token 不合法",e);
+            throw new RuntimeException("token 不合法1",e);
         } catch (TokenExpiredException e) {
             e.printStackTrace();
             throw new RuntimeException("token 已过期",e);
         } catch (JWTVerificationException e) {
             e.printStackTrace();
-            throw new RuntimeException("token 不合法",e);
+            throw new RuntimeException("token 不合法2",e);
         }
     }
 }
