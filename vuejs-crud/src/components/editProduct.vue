@@ -41,7 +41,7 @@ export default {
   },
   methods: {
     backProduct:function () {
-         this.$router.push("/");
+         this.$router.push("/Home");
     },
     onSubmit:function () {
        this.$http.put("/product/" + this.product.id, this.product).then(response => {

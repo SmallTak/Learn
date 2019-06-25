@@ -1,5 +1,14 @@
 <template>
+    
   <div id="Login">
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
     <el-form style="margin-top:20px" ref="form" :model="account" label-width="80px">
             <el-form-item label="username">
                 <el-input v-model="account.username"></el-input>
@@ -7,11 +16,9 @@
             <el-form-item label="password">
                 <el-input type="password" v-model="account.password"></el-input>
             </el-form-item>
-             <el-form-item>
-                <el-button type="primary" @click="onSubmit">登录</el-button>
-            </el-form-item>
+           
             <div class="right-items" style="float: right;">
-                <el-button type="primary" @click="onSubmit">登录</el-button>
+                <el-button type="primary" @click="onSubmit" size="small">登录</el-button>
             </div>
         </el-form>
   </div>
@@ -28,6 +35,8 @@ export default {
    methods:{
     onSubmit:function() {
         this.$http.post("/login",this.account).then(response => {
+            var token = localStorage.getItem("token");
+            console.log(token);
             if (response.data.status == "success") {
                 var token = response.data.result;
                 window.localStorage.setItem("jwtToken", token);
@@ -49,4 +58,5 @@ export default {
         width: 400px;
         margin: 0px auto;
     }
+    
 </style>

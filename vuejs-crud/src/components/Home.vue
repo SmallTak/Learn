@@ -2,7 +2,7 @@
   <div id="Home">
       <div class="right-items" style="float: right;">
         <el-button class="filter-item" style="margin-left: 10px;" type="primary" align="center" size="small"  @click="addProduct" round>新增商品</el-button>
-        <el-button class="filter-item" style="margin-left: 10px;" type="info" align="center" size="small"   round>退出登录</el-button>
+        <!-- <el-button class="filter-item" style="margin-left: 10px;" type="info" align="center" size="small" @click="logout" round>退出登录</el-button> -->
       </div>
       <!-- 取消全选注意 -->
       <el-table
@@ -21,12 +21,25 @@
         label="耳机名称"
         header-align="center"
         width="450">
+        <template slot-scope="scope">
+        <el-popover trigger="hover" placement="top">
+          <p> {{ scope.row.productName }}</p>
+          <div slot="reference" class="name-wrapper">
+            <el-tag size="medium">{{ scope.row.productName }}</el-tag>
+          </div>
+        </el-popover>
+      </template>
       </el-table-column>
       
       <el-table-column
         prop="price"
         label="耳机价格"
         width="250">
+        <template slot-scope="scope">
+          <el-tooltip content="Top center1" placement="top">
+            <el-tag>{{ scope.row.price }}</el-tag>
+          </el-tooltip>
+        </template>
       </el-table-column>
       <el-table-column
         prop="marketPrice"
@@ -40,8 +53,8 @@
       </el-table-column>
       <el-table-column header-align="conter"  label="操作">
                 <template  slot-scope="scope">
-                <el-button type="primary" icon="el-icon-edit" @click="handleEdit(scope.$index, scope.row)" ></el-button>
-                <el-button type="danger" icon="el-icon-delete" @click="handleDelete(scope.$index, scope.row)" ></el-button>
+                <el-button type="primary" size="small" icon="el-icon-edit" @click="handleEdit(scope.$index, scope.row)" ></el-button>
+                <el-button type="danger" size="small" icon="el-icon-delete" @click="handleDelete(scope.$index, scope.row)" ></el-button>
                 </template>
       </el-table-column>
     </el-table>
@@ -155,8 +168,8 @@ export default {
         }).then(() => {
           this.$http.delete(urlapi.productHome + "/bathDel",{data:{test:idList}}).then(response => {
             if (response.data.status == 'success') {
-              this.$router.push("/");
               this.$message.success("删除成功");
+              this.$router.push("/Home");
               this.$router.go(0);
               
             }else {

@@ -4,6 +4,7 @@ import Login from '@/components/Login'
 import Home from '@/components/Home'
 import addProduct from '@/components/addProduct'
 import editProduct from '@/components/editProduct'
+
 Vue.use(Router)
 
 export default new Router({
@@ -16,18 +17,26 @@ export default new Router({
     {
       path: '/Home',
       name: 'Home',
-      component: Home
+      component: Home, meta: {
+        reqiredAuth: true
+      }
     },
     {
       path: '/new',
       name: 'addProduct',
-      component: addProduct
+      component: addProduct,
+      meta: {
+        reqiredAuth: true
+      }
     }
     ,
     {
       path: '/edit/:id',
       name: 'editProduct',
-      component: editProduct
+      component: editProduct,
+      meta: {
+        reqiredAuth: true
+      }
     }
   ]
 })

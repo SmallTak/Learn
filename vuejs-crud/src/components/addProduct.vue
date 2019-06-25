@@ -1,6 +1,9 @@
 <template>
   <div id="addProduct">
-      <el-button type="danger" size="small" @click="backProduct"  round>返回首页</el-button>
+        <div class="right-items" style="float: right;">
+            <el-button class="filter-item" type="danger" size="small" @click="backProduct"  round>返回首页</el-button>
+        </div>
+        <br>
       <el-form style="margin-top:20px" ref="form" :model="product" label-width="80px">
             <el-form-item label="耳机名称">
                 <el-input v-model="product.productName"></el-input>
@@ -33,7 +36,7 @@ export default {
   },
   methods: {
     backProduct:function () {
-         this.$router.push("/");
+         this.$router.push("/Home");
     },
     onSubmit:function () {
         this.$http.post(urlapi.addproduct,this.product).then(response => {
