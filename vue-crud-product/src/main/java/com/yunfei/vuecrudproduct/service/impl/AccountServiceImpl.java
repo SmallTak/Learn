@@ -36,8 +36,12 @@ public class AccountServiceImpl implements AccountService {
     @Override
     public TAccount findAccountById(Integer accountId) {
         TAccount account = accountMapper.selectByPrimaryKey(accountId);
-
         return account;
+    }
+
+    @Override
+    public List<TAccount> findAccountAll() {
+        return accountMapper.selectByExample(new TAccountExample());
     }
 
 }

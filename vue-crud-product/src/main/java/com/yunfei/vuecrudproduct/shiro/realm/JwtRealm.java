@@ -10,6 +10,10 @@ import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import javax.servlet.ServletResponse;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+
 public class JwtRealm extends AuthorizingRealm {
 
     @Autowired
@@ -45,8 +49,10 @@ public class JwtRealm extends AuthorizingRealm {
         JwtToken jwtToken = (JwtToken) authenticationToken;
         //从jwttoken中取出token
         String token = (String) jwtToken.getPrincipal();
+
         //根据token取出id
         Integer accountId = jwtUtil.getUserIdFromToken(token);
+
         TAccount account = accountService.findAccountById(accountId);
         if (account == null){
             throw new UnknownAccountException("该token不存在");
@@ -54,9 +60,13 @@ public class JwtRealm extends AuthorizingRealm {
             try {
                 jwtUtil.verifyToken(token,account.getPassword(),accountId);
             }catch (Exception e){
-                e.printStackTrace();
+                //e.printStackTrace();
+                //throw new AuthenticationException(e.getMessage(), e);
+                throw new UnknownAccountException("token已过期，请重新登录");
             }
         }
         return new SimpleAuthenticationInfo(token, token, getName());
     }
+
+
 }

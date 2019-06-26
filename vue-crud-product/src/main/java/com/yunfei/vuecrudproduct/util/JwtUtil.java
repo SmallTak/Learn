@@ -15,6 +15,7 @@ import java.util.Date;
 public class JwtUtil {
 
     public static final long TOKEN_EXPIRES = 1000 * 60 * 60 * 24 * 30L;
+    //public static final long TOKEN_EXPIRES = 1000 * 60;
 
     /*  创建token
      *
@@ -43,8 +44,14 @@ public class JwtUtil {
     * @return java.lang.Integer  
     */ 
     public Integer getUserIdFromToken(String token){
-        DecodedJWT decodedJWT = JWT.decode(token);
-        return decodedJWT.getClaim("userId").asInt();
+        try {
+            DecodedJWT decodedJWT = JWT.decode(token);
+            return decodedJWT.getClaim("userId").asInt();
+        } catch (TokenExpiredException e) {
+            e.printStackTrace();
+            throw new RuntimeException("token 不合法1",e);
+        }
+
     }
 
     /*  校验token

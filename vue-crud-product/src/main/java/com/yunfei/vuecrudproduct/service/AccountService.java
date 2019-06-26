@@ -2,6 +2,8 @@ package com.yunfei.vuecrudproduct.service;
 
 import com.yunfei.vuecrudproduct.entity.TAccount;
 
+import java.util.List;
+
 public interface AccountService {
 
     /*  登录
@@ -19,4 +21,12 @@ public interface AccountService {
      * @return org.apache.shiro.authc.Account  
      */ 
     TAccount findAccountById(Integer accountId);
+
+    /*  查找所有account
+     *
+     * @date 2019/6/26
+     * @param []
+     * @return java.util.List<com.yunfei.vuecrudproduct.entity.TAccount>
+     */
+    List<TAccount> findAccountAll();
 }
