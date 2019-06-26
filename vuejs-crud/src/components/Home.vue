@@ -2,7 +2,9 @@
   <div id="Home">
       <div class="right-items" style="float: right;">
         <el-button class="filter-item" style="margin-left: 10px;" type="primary" align="center" size="small"  @click="addProduct" round>新增商品</el-button>
-        <!-- <el-button class="filter-item" style="margin-left: 10px;" type="info" align="center" size="small" @click="logout" round>退出登录</el-button> -->
+        <el-button class="filter-item" style="margin-left: 10px;" type="info" align="center" size="small" @click="logout" round>退出登录</el-button>
+        <el-button class="filter-item" style="margin-left: 10px;" type="info" align="center" size="small" @click="getPdf()" round>点击生成pdf</el-button>
+        <el-button class="filter-item" style="margin-left: 10px;" type="info" align="center" size="small" @click="getExcel" round>导出excel</el-button>
       </div>
       <!-- 取消全选注意 -->
       <el-table
@@ -71,9 +73,9 @@
   </div>
 </template>
 
-
-
 <script>
+import html2canvas from 'html2canvas'
+import JSPDF from 'jspdf'
 import urlapi from '../const/url'
 export default {
   name:'Home', 
@@ -83,10 +85,20 @@ export default {
         total:1,
         currentPage:1,
         sels: [],
-        multipleSelection: []
+        multipleSelection: [],
+        htmlTitle: '信用目录'
     }
   },
   methods: {
+    getExcel:function () {
+        localStorage.removeItem("jwtToken");
+        
+    },
+    logout:function () {
+        localStorage.removeItem("jwtToken");
+        this.$message("你已安全退出");
+        this.$router.push("/");
+    },
     addProduct:function () {
       this.$router.push("/new")
     },

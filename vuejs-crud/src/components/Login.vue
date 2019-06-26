@@ -36,7 +36,6 @@ export default {
     onSubmit:function() {
         this.$http.post("/login",this.account).then(response => {
             var token = localStorage.getItem("token");
-            console.log(token);
             if (response.data.status == "success") {
                 var token = response.data.result;
                 window.localStorage.setItem("jwtToken", token);

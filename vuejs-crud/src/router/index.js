@@ -17,7 +17,8 @@ export default new Router({
     {
       path: '/Home',
       name: 'Home',
-      component: Home, meta: {
+      component: Home, 
+      meta: {
         reqiredAuth: true
       }
     },
@@ -38,5 +39,6 @@ export default new Router({
         reqiredAuth: true
       }
     }
+    
   ]
 })
