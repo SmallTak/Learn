@@ -4,7 +4,7 @@
         <el-button class="filter-item" style="margin-left: 10px;" type="primary" align="center" size="small"  @click="addProduct" round>新增商品</el-button>
         <el-button class="filter-item" style="margin-left: 10px;" type="info" align="center" size="small" @click="logout" round>退出登录</el-button>
         <el-button class="filter-item" style="margin-left: 10px;" type="info" align="center" size="small" @click="getPdf()" round>点击生成pdf</el-button>
-        <el-button class="filter-item" style="margin-left: 10px;" type="info" align="center" size="small" @click="getExcel" round>导出excel</el-button>
+        <el-button class="filter-item" style="margin-left: 10px;" type="info" align="center" size="small" @click="See" round>导出excel</el-button>
       </div>
       <!-- 取消全选注意 -->
       <el-table
@@ -90,9 +90,24 @@ export default {
     }
   },
   methods: {
-    getExcel:function () {
-        localStorage.removeItem("jwtToken");
+    
+    // getExcel:function (pageNum) {
+    //     console.log(pageNum + "页数？？？？");
+    //     var page = pageNum;
+    //     this.$http.get("/exportExcel").then(response => {
+    //        if (response.data.status == 'success') {
+    //            this.$message.success("打印成功");
+    //            //this.$router.push("/");
+    //        }else {
+    //            this.$message.error(response.data.message)
+    //        }
+    //    }).catch(error => {
+    //        this.$message.error("系统提示:" + error.message);
+    //    })
         
+    // },
+    See:function () {
+        window.location.href =  "http://localhost:9090/exportExcel";
     },
     logout:function () {
         localStorage.removeItem("jwtToken");
@@ -136,10 +151,12 @@ export default {
     pageData:function (pageNo) {
       // this.currentPage = pageNo;
       this.loadData(this.currentPage=pageNo)
+      this.getExcel(this.currentPage=pageNo)//打印该页数据
       //this.loadData(pageNo)
     },
     //分页3
     loadData:function (pageNum) {
+       //console.log(pageNum + "页数");
         this.$http.get(urlapi.productHome +"/?p=" + pageNum).then(response => {
           this.products = response.data.result.list;
           this.total = response.data.result.total;
