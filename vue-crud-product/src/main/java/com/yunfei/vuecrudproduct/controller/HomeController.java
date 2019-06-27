@@ -1,22 +1,17 @@
 package com.yunfei.vuecrudproduct.controller;
 
 
-import com.alibaba.fastjson.JSONArray;
 import com.github.pagehelper.PageInfo;
-import com.yunfei.vuecrudproduct.controller.para.MyParam;
 import com.yunfei.vuecrudproduct.controller.resoult.ResponseBean;
 import com.yunfei.vuecrudproduct.entity.Product;
+import com.yunfei.vuecrudproduct.service.AccountService;
+import com.yunfei.vuecrudproduct.service.ExportTest;
 import com.yunfei.vuecrudproduct.service.ProductService;
-import org.apache.commons.lang3.StringUtils;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.cors.CorsConfiguration;
-import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
-import org.springframework.web.filter.CorsFilter;
 
-import javax.servlet.http.HttpServletRequest;
-import java.util.List;
+
 
 @RestController
 @RequestMapping("/product")
@@ -26,6 +21,13 @@ public class HomeController {
     @Autowired
     private ProductService productService;
 
+    @Autowired
+    private AccountService accountService;
+
+    @Autowired
+    private ExportTest exportTest;
+
+    @ApiOperation("/home页面")
     @GetMapping
     public ResponseBean  home(@RequestParam(required = false, name = "p", defaultValue = "1") Integer pageNo){
 
@@ -39,6 +41,7 @@ public class HomeController {
 //        return ResponseBean.success(products);
 //    }
 
+    @ApiOperation("/新增商品")
     @PostMapping("/new")
     public ResponseBean addProduct(@RequestBody Product product){//@RequestBody若前端发送的数据为json则加
 
@@ -47,6 +50,7 @@ public class HomeController {
         return ResponseBean.success();
     }
 
+    @ApiOperation("/批量删除")
     @DeleteMapping("/bathDel")
     public ResponseBean bathDel(@RequestBody String arr){//@PathVariable Integer[] attr
 
@@ -54,6 +58,7 @@ public class HomeController {
         return ResponseBean.success();
     }
 
+    @ApiOperation("/单个删除商品")
     @DeleteMapping("/{id}")
     public ResponseBean delProductById(@PathVariable Integer id){
         try {
@@ -66,6 +71,7 @@ public class HomeController {
         }
     }
 
+    @ApiOperation("/通过id查找商品")
     @GetMapping("/{id}")
     public ResponseBean findProductById(@PathVariable Integer id){
 
@@ -74,6 +80,7 @@ public class HomeController {
 
     }
 
+    @ApiOperation("/通过id修改商品")
     @PutMapping("/{id}")
     public ResponseBean editProductById(@RequestBody Product product){
 

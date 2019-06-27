@@ -61,8 +61,8 @@ public class JwtRealm extends AuthorizingRealm {
                 jwtUtil.verifyToken(token,account.getPassword(),accountId);
             }catch (Exception e){
                 //e.printStackTrace();
-                //throw new AuthenticationException(e.getMessage(), e);
-                throw new UnknownAccountException("token已过期，请重新登录");
+                throw new AuthenticationException(e.getMessage(), e);
+               // throw new UnknownAccountException("token已过期，请重新登录");
             }
         }
         return new SimpleAuthenticationInfo(token, token, getName());
