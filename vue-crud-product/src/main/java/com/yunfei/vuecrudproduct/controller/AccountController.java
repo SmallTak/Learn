@@ -21,7 +21,7 @@ public class AccountController {
     public ResponseBean login(@RequestBody  TAccount accoun){
 
         try {
-            System.out.println(accoun.getUsername() + accoun.getPassword());
+            System.err.println(accoun.getUsername() + accoun.getPassword());
             TAccount account = accountService.login(accoun.getUsername(), accoun.getPassword());
             String token = jwtUtil.createToken(account.getId(),account.getPassword());
             return ResponseBean.success(token);

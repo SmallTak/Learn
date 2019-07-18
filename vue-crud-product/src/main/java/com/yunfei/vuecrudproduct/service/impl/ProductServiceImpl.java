@@ -9,7 +9,10 @@ import com.yunfei.vuecrudproduct.entity.TAccountExample;
 import com.yunfei.vuecrudproduct.mapper.ProductMapper;
 import com.yunfei.vuecrudproduct.mapper.TAccountMapper;
 import com.yunfei.vuecrudproduct.service.ProductService;
+import com.yunfei.vuecrudproduct.shiro.filter.JwtFilter;
 import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +20,9 @@ import java.util.List;
 
 @Service
 public class ProductServiceImpl implements ProductService {
+
+
+    protected static Logger logger=LoggerFactory.getLogger(ProductServiceImpl.class);
 
     @Autowired
     private ProductMapper productMapper;
@@ -30,6 +36,7 @@ public class ProductServiceImpl implements ProductService {
         ProductExample productExample = new ProductExample();
         //productExample.setOrderByClause("id DESC");
         List<Product> products = productMapper.selectByExample(productExample);
+        logger.debug("select all");
         return new PageInfo<>(products);
     }
 
@@ -63,6 +70,7 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public Product findProductById(Integer id) {
         Product product = productMapper.selectByPrimaryKey(id);
+        logger.debug("select product by id");
         return product;
     }
 

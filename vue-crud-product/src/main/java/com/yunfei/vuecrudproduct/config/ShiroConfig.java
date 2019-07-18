@@ -45,7 +45,7 @@ public class ShiroConfig {
     public ShiroFilterFactoryBean shiroFilterFactoryBean(DefaultWebSecurityManager defaultWebSecurityManager){
         ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
         shiroFilterFactoryBean.setSecurityManager(defaultWebSecurityManager);
-
+        System.err.println("----------------------------------start-shiroConfig----------------------------------");
         // 添加过滤器并且取名为jwt
         Map<String, Filter> filterMap = new HashMap<>();
         filterMap.put("jwt", new JwtFilter());
@@ -57,7 +57,7 @@ public class ShiroConfig {
         LinkedHashMap<String,String> map = new LinkedHashMap<>();
         map.put("/login","anon");
 
-        //map.put("/**","jwt");
+        map.put("/**","jwt");
 
         shiroFilterFactoryBean.setFilterChainDefinitionMap(map);
         return shiroFilterFactoryBean;

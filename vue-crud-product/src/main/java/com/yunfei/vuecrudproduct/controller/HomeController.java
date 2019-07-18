@@ -7,7 +7,10 @@ import com.yunfei.vuecrudproduct.entity.Product;
 import com.yunfei.vuecrudproduct.service.AccountService;
 import com.yunfei.vuecrudproduct.service.ExportTest;
 import com.yunfei.vuecrudproduct.service.ProductService;
+import com.yunfei.vuecrudproduct.service.impl.ProductServiceImpl;
 import io.swagger.annotations.ApiOperation;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,6 +20,8 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/product")
 @CrossOrigin("*")
 public class HomeController {
+
+
 
     @Autowired
     private ProductService productService;
@@ -30,7 +35,6 @@ public class HomeController {
     @ApiOperation("/home页面")
     @GetMapping
     public ResponseBean  home(@RequestParam(required = false, name = "p", defaultValue = "1") Integer pageNo){
-
         PageInfo<Product> pageInfo =  productService.selectAllProduct(pageNo);
         return ResponseBean.success(pageInfo);
 

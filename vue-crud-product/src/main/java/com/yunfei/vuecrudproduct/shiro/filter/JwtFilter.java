@@ -5,6 +5,8 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.subject.Subject;
 import org.apache.shiro.web.filter.AccessControlFilter;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -15,7 +17,11 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 public class JwtFilter extends AccessControlFilter {
 
+    //请求头中的token所在的key
     private static final String  AUTHORIZATION_HEADER = "Authorization";
+
+    protected static Logger logger=LoggerFactory.getLogger(JwtFilter.class);
+
 
     @Override
     protected boolean preHandle(ServletRequest request, ServletResponse response) throws Exception {
@@ -44,12 +50,14 @@ public class JwtFilter extends AccessControlFilter {
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         //从请求中获得token
         String token = request.getHeader(AUTHORIZATION_HEADER);
+        System.err.println("----------------------------------start-filter----------------------------------");
         System.err.println(token);
 
         if (StringUtils.isEmpty(token)){
             loginError(servletResponse, "请登录后再执行该操作");
+            logger.debug("请登录后再执行该操作");
         } else {
-            JwtToken jwtToken = new JwtToken(token);
+            JwtToken jwtToken = new JwtToken(token);  //因为jwtToken实现了AuthenticationToken，所以realm验证登录的时候直接可以获得token
             Subject subject = getSubject(servletRequest, servletResponse);
             try {
                 subject.login(jwtToken);
@@ -59,7 +67,6 @@ public class JwtFilter extends AccessControlFilter {
                 loginError(servletResponse,e.getMessage());
             }
         }
-
         return false;
     }
 

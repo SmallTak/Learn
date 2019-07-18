@@ -10,9 +10,6 @@ import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import javax.servlet.ServletResponse;
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
 
 public class JwtRealm extends AuthorizingRealm {
 
@@ -24,7 +21,7 @@ public class JwtRealm extends AuthorizingRealm {
 
     @Override
     public boolean supports(AuthenticationToken token) {
-        return token instanceof JwtToken;
+        return token instanceof JwtToken;//说明该realm仅支持的token   平常用的是UsernamePasswordToken
     }
 
     /*  验证权限和角色
