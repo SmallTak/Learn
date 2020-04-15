@@ -1,0 +1,688 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yunfei.vuecrudproduct.mapper.LicensingMapper">
+  <resultMap id="BaseResultMap" type="com.yunfei.vuecrudproduct.entity.Licensing">
+    <result column="id" jdbcType="VARCHAR" property="id" />
+    <result column="XK_WSH" jdbcType="VARCHAR" property="xkWsh" />
+    <result column="XK_XMMC" jdbcType="VARCHAR" property="xkXmmc" />
+    <result column="XK_SPLB" jdbcType="VARCHAR" property="xkSplb" />
+    <result column="XK_XDR" jdbcType="VARCHAR" property="xkXdr" />
+    <result column="XK_SDR_XYDM" jdbcType="VARCHAR" property="xkSdrXydm" />
+    <result column="XK_SDR_ZZJG" jdbcType="VARCHAR" property="xkSdrZzjg" />
+    <result column="XK_SDR_GSDJ" jdbcType="VARCHAR" property="xkSdrGsdj" />
+    <result column="XK_SDR_SWDJ" jdbcType="VARCHAR" property="xkSdrSwdj" />
+    <result column="XK_SDR_SFZ" jdbcType="VARCHAR" property="xkSdrSfz" />
+    <result column="XK_FR" jdbcType="VARCHAR" property="xkFr" />
+    <result column="XK_JDRQ" jdbcType="VARCHAR" property="xkJdrq" />
+    <result column="XK_JZRQ" jdbcType="VARCHAR" property="xkJzrq" />
+    <result column="XK_JG" jdbcType="VARCHAR" property="xkJg" />
+    <result column="XK_DQZT" jdbcType="VARCHAR" property="xkDqzt" />
+    <result column="DFBM" jdbcType="VARCHAR" property="dfbm" />
+    <result column="FBSJ" jdbcType="VARCHAR" property="fbsj" />
+    <result column="BZ" jdbcType="VARCHAR" property="bz" />
+    <result column="DWID" jdbcType="VARCHAR" property="dwid" />
+    <result column="CMS_ID" jdbcType="VARCHAR" property="cmsId" />
+    <result column="CMS_FBZT" jdbcType="VARCHAR" property="cmsFbzt" />
+    <result column="XK_NR" jdbcType="VARCHAR" property="xkNr" />
+    <result column="SJGXSJ" jdbcType="VARCHAR" property="sjgxsj" />
+    <result column="FJLJ" jdbcType="VARCHAR" property="fjlj" />
+    <result column="GKFW" jdbcType="VARCHAR" property="gkfw" />
+    <result column="FBSJ2" jdbcType="VARCHAR" property="fbsj2" />
+    <result column="DRBH" jdbcType="VARCHAR" property="drbh" />
+    <result column="YH_ID" jdbcType="VARCHAR" property="yhId" />
+    <result column="SK_WSH_UK" jdbcType="VARCHAR" property="skWshUk" />
+    <result column="FLAG" jdbcType="VARCHAR" property="flag" />
+    <result column="ISSUCC" jdbcType="VARCHAR" property="issucc" />
+    <result column="YDCS" jdbcType="VARCHAR" property="ydcs" />
+    <result column="addTime" jdbcType="VARCHAR" property="addtime" />
+    <result column="FORSQZJID" jdbcType="VARCHAR" property="forsqzjid" />
+    <result column="IDKEY" jdbcType="VARCHAR" property="idkey" />
+    <result column="XK_XKWS" jdbcType="VARCHAR" property="xkXkws" />
+    <result column="XK_XDR_SYDW" jdbcType="VARCHAR" property="xkXdrSydw" />
+    <result column="XK_XDR_SHZZ" jdbcType="VARCHAR" property="xkXdrShzz" />
+    <result column="XK_FR_ZJHM" jdbcType="VARCHAR" property="xkFrZjhm" />
+    <result column="XK_XDR_ZJLX" jdbcType="VARCHAR" property="xkXdrZjlx" />
+    <result column="XK_XKZS" jdbcType="VARCHAR" property="xkXkzs" />
+    <result column="XK_XKBH" jdbcType="VARCHAR" property="xkXkbh" />
+    <result column="XK_YXQZ" jdbcType="VARCHAR" property="xkYxqz" />
+    <result column="XK_XKJGDM" jdbcType="VARCHAR" property="xkXkjgdm" />
+    <result column="XK_LYDW" jdbcType="VARCHAR" property="xkLydw" />
+    <result column="XK_LYDWDM" jdbcType="VARCHAR" property="xkLydwdm" />
+    <result column="XK_FR_ZJLX" jdbcType="VARCHAR" property="xkFrZjlx" />
+    <result column="XK_XDR_LB" jdbcType="VARCHAR" property="xkXdrLb" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, XK_WSH, XK_XMMC, XK_SPLB, XK_XDR, XK_SDR_XYDM, XK_SDR_ZZJG, XK_SDR_GSDJ, XK_SDR_SWDJ, 
+    XK_SDR_SFZ, XK_FR, XK_JDRQ, XK_JZRQ, XK_JG, XK_DQZT, DFBM, FBSJ, BZ, DWID, CMS_ID, 
+    CMS_FBZT, XK_NR, SJGXSJ, FJLJ, GKFW, FBSJ2, DRBH, YH_ID, SK_WSH_UK, FLAG, ISSUCC, 
+    YDCS, addTime, FORSQZJID, IDKEY, XK_XKWS, XK_XDR_SYDW, XK_XDR_SHZZ, XK_FR_ZJHM, XK_XDR_ZJLX, 
+    XK_XKZS, XK_XKBH, XK_YXQZ, XK_XKJGDM, XK_LYDW, XK_LYDWDM, XK_FR_ZJLX, XK_XDR_LB
+  </sql>
+  <select id="selectByExample" parameterType="com.yunfei.vuecrudproduct.entity.LicensingExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from licensing
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    <if test="limit != null">
+      <if test="offset != null">
+        limit ${offset}, ${limit}
+      </if>
+      <if test="offset == null">
+        limit ${limit}
+      </if>
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.yunfei.vuecrudproduct.entity.LicensingExample">
+    delete from licensing
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.yunfei.vuecrudproduct.entity.Licensing">
+    insert into licensing (id, XK_WSH, XK_XMMC, 
+      XK_SPLB, XK_XDR, XK_SDR_XYDM, 
+      XK_SDR_ZZJG, XK_SDR_GSDJ, XK_SDR_SWDJ, 
+      XK_SDR_SFZ, XK_FR, XK_JDRQ, 
+      XK_JZRQ, XK_JG, XK_DQZT, 
+      DFBM, FBSJ, BZ, DWID, 
+      CMS_ID, CMS_FBZT, XK_NR, 
+      SJGXSJ, FJLJ, GKFW, 
+      FBSJ2, DRBH, YH_ID, 
+      SK_WSH_UK, FLAG, ISSUCC, 
+      YDCS, addTime, FORSQZJID, 
+      IDKEY, XK_XKWS, XK_XDR_SYDW, 
+      XK_XDR_SHZZ, XK_FR_ZJHM, XK_XDR_ZJLX, 
+      XK_XKZS, XK_XKBH, XK_YXQZ, 
+      XK_XKJGDM, XK_LYDW, XK_LYDWDM, 
+      XK_FR_ZJLX, XK_XDR_LB)
+    values (#{id,jdbcType=VARCHAR}, #{xkWsh,jdbcType=VARCHAR}, #{xkXmmc,jdbcType=VARCHAR}, 
+      #{xkSplb,jdbcType=VARCHAR}, #{xkXdr,jdbcType=VARCHAR}, #{xkSdrXydm,jdbcType=VARCHAR}, 
+      #{xkSdrZzjg,jdbcType=VARCHAR}, #{xkSdrGsdj,jdbcType=VARCHAR}, #{xkSdrSwdj,jdbcType=VARCHAR}, 
+      #{xkSdrSfz,jdbcType=VARCHAR}, #{xkFr,jdbcType=VARCHAR}, #{xkJdrq,jdbcType=VARCHAR}, 
+      #{xkJzrq,jdbcType=VARCHAR}, #{xkJg,jdbcType=VARCHAR}, #{xkDqzt,jdbcType=VARCHAR}, 
+      #{dfbm,jdbcType=VARCHAR}, #{fbsj,jdbcType=VARCHAR}, #{bz,jdbcType=VARCHAR}, #{dwid,jdbcType=VARCHAR}, 
+      #{cmsId,jdbcType=VARCHAR}, #{cmsFbzt,jdbcType=VARCHAR}, #{xkNr,jdbcType=VARCHAR}, 
+      #{sjgxsj,jdbcType=VARCHAR}, #{fjlj,jdbcType=VARCHAR}, #{gkfw,jdbcType=VARCHAR}, 
+      #{fbsj2,jdbcType=VARCHAR}, #{drbh,jdbcType=VARCHAR}, #{yhId,jdbcType=VARCHAR}, 
+      #{skWshUk,jdbcType=VARCHAR}, #{flag,jdbcType=VARCHAR}, #{issucc,jdbcType=VARCHAR}, 
+      #{ydcs,jdbcType=VARCHAR}, #{addtime,jdbcType=VARCHAR}, #{forsqzjid,jdbcType=VARCHAR}, 
+      #{idkey,jdbcType=VARCHAR}, #{xkXkws,jdbcType=VARCHAR}, #{xkXdrSydw,jdbcType=VARCHAR}, 
+      #{xkXdrShzz,jdbcType=VARCHAR}, #{xkFrZjhm,jdbcType=VARCHAR}, #{xkXdrZjlx,jdbcType=VARCHAR}, 
+      #{xkXkzs,jdbcType=VARCHAR}, #{xkXkbh,jdbcType=VARCHAR}, #{xkYxqz,jdbcType=VARCHAR}, 
+      #{xkXkjgdm,jdbcType=VARCHAR}, #{xkLydw,jdbcType=VARCHAR}, #{xkLydwdm,jdbcType=VARCHAR}, 
+      #{xkFrZjlx,jdbcType=VARCHAR}, #{xkXdrLb,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yunfei.vuecrudproduct.entity.Licensing">
+    insert into licensing
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="xkWsh != null">
+        XK_WSH,
+      </if>
+      <if test="xkXmmc != null">
+        XK_XMMC,
+      </if>
+      <if test="xkSplb != null">
+        XK_SPLB,
+      </if>
+      <if test="xkXdr != null">
+        XK_XDR,
+      </if>
+      <if test="xkSdrXydm != null">
+        XK_SDR_XYDM,
+      </if>
+      <if test="xkSdrZzjg != null">
+        XK_SDR_ZZJG,
+      </if>
+      <if test="xkSdrGsdj != null">
+        XK_SDR_GSDJ,
+      </if>
+      <if test="xkSdrSwdj != null">
+        XK_SDR_SWDJ,
+      </if>
+      <if test="xkSdrSfz != null">
+        XK_SDR_SFZ,
+      </if>
+      <if test="xkFr != null">
+        XK_FR,
+      </if>
+      <if test="xkJdrq != null">
+        XK_JDRQ,
+      </if>
+      <if test="xkJzrq != null">
+        XK_JZRQ,
+      </if>
+      <if test="xkJg != null">
+        XK_JG,
+      </if>
+      <if test="xkDqzt != null">
+        XK_DQZT,
+      </if>
+      <if test="dfbm != null">
+        DFBM,
+      </if>
+      <if test="fbsj != null">
+        FBSJ,
+      </if>
+      <if test="bz != null">
+        BZ,
+      </if>
+      <if test="dwid != null">
+        DWID,
+      </if>
+      <if test="cmsId != null">
+        CMS_ID,
+      </if>
+      <if test="cmsFbzt != null">
+        CMS_FBZT,
+      </if>
+      <if test="xkNr != null">
+        XK_NR,
+      </if>
+      <if test="sjgxsj != null">
+        SJGXSJ,
+      </if>
+      <if test="fjlj != null">
+        FJLJ,
+      </if>
+      <if test="gkfw != null">
+        GKFW,
+      </if>
+      <if test="fbsj2 != null">
+        FBSJ2,
+      </if>
+      <if test="drbh != null">
+        DRBH,
+      </if>
+      <if test="yhId != null">
+        YH_ID,
+      </if>
+      <if test="skWshUk != null">
+        SK_WSH_UK,
+      </if>
+      <if test="flag != null">
+        FLAG,
+      </if>
+      <if test="issucc != null">
+        ISSUCC,
+      </if>
+      <if test="ydcs != null">
+        YDCS,
+      </if>
+      <if test="addtime != null">
+        addTime,
+      </if>
+      <if test="forsqzjid != null">
+        FORSQZJID,
+      </if>
+      <if test="idkey != null">
+        IDKEY,
+      </if>
+      <if test="xkXkws != null">
+        XK_XKWS,
+      </if>
+      <if test="xkXdrSydw != null">
+        XK_XDR_SYDW,
+      </if>
+      <if test="xkXdrShzz != null">
+        XK_XDR_SHZZ,
+      </if>
+      <if test="xkFrZjhm != null">
+        XK_FR_ZJHM,
+      </if>
+      <if test="xkXdrZjlx != null">
+        XK_XDR_ZJLX,
+      </if>
+      <if test="xkXkzs != null">
+        XK_XKZS,
+      </if>
+      <if test="xkXkbh != null">
+        XK_XKBH,
+      </if>
+      <if test="xkYxqz != null">
+        XK_YXQZ,
+      </if>
+      <if test="xkXkjgdm != null">
+        XK_XKJGDM,
+      </if>
+      <if test="xkLydw != null">
+        XK_LYDW,
+      </if>
+      <if test="xkLydwdm != null">
+        XK_LYDWDM,
+      </if>
+      <if test="xkFrZjlx != null">
+        XK_FR_ZJLX,
+      </if>
+      <if test="xkXdrLb != null">
+        XK_XDR_LB,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="xkWsh != null">
+        #{xkWsh,jdbcType=VARCHAR},
+      </if>
+      <if test="xkXmmc != null">
+        #{xkXmmc,jdbcType=VARCHAR},
+      </if>
+      <if test="xkSplb != null">
+        #{xkSplb,jdbcType=VARCHAR},
+      </if>
+      <if test="xkXdr != null">
+        #{xkXdr,jdbcType=VARCHAR},
+      </if>
+      <if test="xkSdrXydm != null">
+        #{xkSdrXydm,jdbcType=VARCHAR},
+      </if>
+      <if test="xkSdrZzjg != null">
+        #{xkSdrZzjg,jdbcType=VARCHAR},
+      </if>
+      <if test="xkSdrGsdj != null">
+        #{xkSdrGsdj,jdbcType=VARCHAR},
+      </if>
+      <if test="xkSdrSwdj != null">
+        #{xkSdrSwdj,jdbcType=VARCHAR},
+      </if>
+      <if test="xkSdrSfz != null">
+        #{xkSdrSfz,jdbcType=VARCHAR},
+      </if>
+      <if test="xkFr != null">
+        #{xkFr,jdbcType=VARCHAR},
+      </if>
+      <if test="xkJdrq != null">
+        #{xkJdrq,jdbcType=VARCHAR},
+      </if>
+      <if test="xkJzrq != null">
+        #{xkJzrq,jdbcType=VARCHAR},
+      </if>
+      <if test="xkJg != null">
+        #{xkJg,jdbcType=VARCHAR},
+      </if>
+      <if test="xkDqzt != null">
+        #{xkDqzt,jdbcType=VARCHAR},
+      </if>
+      <if test="dfbm != null">
+        #{dfbm,jdbcType=VARCHAR},
+      </if>
+      <if test="fbsj != null">
+        #{fbsj,jdbcType=VARCHAR},
+      </if>
+      <if test="bz != null">
+        #{bz,jdbcType=VARCHAR},
+      </if>
+      <if test="dwid != null">
+        #{dwid,jdbcType=VARCHAR},
+      </if>
+      <if test="cmsId != null">
+        #{cmsId,jdbcType=VARCHAR},
+      </if>
+      <if test="cmsFbzt != null">
+        #{cmsFbzt,jdbcType=VARCHAR},
+      </if>
+      <if test="xkNr != null">
+        #{xkNr,jdbcType=VARCHAR},
+      </if>
+      <if test="sjgxsj != null">
+        #{sjgxsj,jdbcType=VARCHAR},
+      </if>
+      <if test="fjlj != null">
+        #{fjlj,jdbcType=VARCHAR},
+      </if>
+      <if test="gkfw != null">
+        #{gkfw,jdbcType=VARCHAR},
+      </if>
+      <if test="fbsj2 != null">
+        #{fbsj2,jdbcType=VARCHAR},
+      </if>
+      <if test="drbh != null">
+        #{drbh,jdbcType=VARCHAR},
+      </if>
+      <if test="yhId != null">
+        #{yhId,jdbcType=VARCHAR},
+      </if>
+      <if test="skWshUk != null">
+        #{skWshUk,jdbcType=VARCHAR},
+      </if>
+      <if test="flag != null">
+        #{flag,jdbcType=VARCHAR},
+      </if>
+      <if test="issucc != null">
+        #{issucc,jdbcType=VARCHAR},
+      </if>
+      <if test="ydcs != null">
+        #{ydcs,jdbcType=VARCHAR},
+      </if>
+      <if test="addtime != null">
+        #{addtime,jdbcType=VARCHAR},
+      </if>
+      <if test="forsqzjid != null">
+        #{forsqzjid,jdbcType=VARCHAR},
+      </if>
+      <if test="idkey != null">
+        #{idkey,jdbcType=VARCHAR},
+      </if>
+      <if test="xkXkws != null">
+        #{xkXkws,jdbcType=VARCHAR},
+      </if>
+      <if test="xkXdrSydw != null">
+        #{xkXdrSydw,jdbcType=VARCHAR},
+      </if>
+      <if test="xkXdrShzz != null">
+        #{xkXdrShzz,jdbcType=VARCHAR},
+      </if>
+      <if test="xkFrZjhm != null">
+        #{xkFrZjhm,jdbcType=VARCHAR},
+      </if>
+      <if test="xkXdrZjlx != null">
+        #{xkXdrZjlx,jdbcType=VARCHAR},
+      </if>
+      <if test="xkXkzs != null">
+        #{xkXkzs,jdbcType=VARCHAR},
+      </if>
+      <if test="xkXkbh != null">
+        #{xkXkbh,jdbcType=VARCHAR},
+      </if>
+      <if test="xkYxqz != null">
+        #{xkYxqz,jdbcType=VARCHAR},
+      </if>
+      <if test="xkXkjgdm != null">
+        #{xkXkjgdm,jdbcType=VARCHAR},
+      </if>
+      <if test="xkLydw != null">
+        #{xkLydw,jdbcType=VARCHAR},
+      </if>
+      <if test="xkLydwdm != null">
+        #{xkLydwdm,jdbcType=VARCHAR},
+      </if>
+      <if test="xkFrZjlx != null">
+        #{xkFrZjlx,jdbcType=VARCHAR},
+      </if>
+      <if test="xkXdrLb != null">
+        #{xkXdrLb,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.yunfei.vuecrudproduct.entity.LicensingExample" resultType="java.lang.Long">
+    select count(*) from licensing
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update licensing
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.xkWsh != null">
+        XK_WSH = #{record.xkWsh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.xkXmmc != null">
+        XK_XMMC = #{record.xkXmmc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.xkSplb != null">
+        XK_SPLB = #{record.xkSplb,jdbcType=VARCHAR},
+      </if>
+      <if test="record.xkXdr != null">
+        XK_XDR = #{record.xkXdr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.xkSdrXydm != null">
+        XK_SDR_XYDM = #{record.xkSdrXydm,jdbcType=VARCHAR},
+      </if>
+      <if test="record.xkSdrZzjg != null">
+        XK_SDR_ZZJG = #{record.xkSdrZzjg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.xkSdrGsdj != null">
+        XK_SDR_GSDJ = #{record.xkSdrGsdj,jdbcType=VARCHAR},
+      </if>
+      <if test="record.xkSdrSwdj != null">
+        XK_SDR_SWDJ = #{record.xkSdrSwdj,jdbcType=VARCHAR},
+      </if>
+      <if test="record.xkSdrSfz != null">
+        XK_SDR_SFZ = #{record.xkSdrSfz,jdbcType=VARCHAR},
+      </if>
+      <if test="record.xkFr != null">
+        XK_FR = #{record.xkFr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.xkJdrq != null">
+        XK_JDRQ = #{record.xkJdrq,jdbcType=VARCHAR},
+      </if>
+      <if test="record.xkJzrq != null">
+        XK_JZRQ = #{record.xkJzrq,jdbcType=VARCHAR},
+      </if>
+      <if test="record.xkJg != null">
+        XK_JG = #{record.xkJg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.xkDqzt != null">
+        XK_DQZT = #{record.xkDqzt,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dfbm != null">
+        DFBM = #{record.dfbm,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fbsj != null">
+        FBSJ = #{record.fbsj,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bz != null">
+        BZ = #{record.bz,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dwid != null">
+        DWID = #{record.dwid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cmsId != null">
+        CMS_ID = #{record.cmsId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cmsFbzt != null">
+        CMS_FBZT = #{record.cmsFbzt,jdbcType=VARCHAR},
+      </if>
+      <if test="record.xkNr != null">
+        XK_NR = #{record.xkNr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sjgxsj != null">
+        SJGXSJ = #{record.sjgxsj,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fjlj != null">
+        FJLJ = #{record.fjlj,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gkfw != null">
+        GKFW = #{record.gkfw,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fbsj2 != null">
+        FBSJ2 = #{record.fbsj2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.drbh != null">
+        DRBH = #{record.drbh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.yhId != null">
+        YH_ID = #{record.yhId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.skWshUk != null">
+        SK_WSH_UK = #{record.skWshUk,jdbcType=VARCHAR},
+      </if>
+      <if test="record.flag != null">
+        FLAG = #{record.flag,jdbcType=VARCHAR},
+      </if>
+      <if test="record.issucc != null">
+        ISSUCC = #{record.issucc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ydcs != null">
+        YDCS = #{record.ydcs,jdbcType=VARCHAR},
+      </if>
+      <if test="record.addtime != null">
+        addTime = #{record.addtime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.forsqzjid != null">
+        FORSQZJID = #{record.forsqzjid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.idkey != null">
+        IDKEY = #{record.idkey,jdbcType=VARCHAR},
+      </if>
+      <if test="record.xkXkws != null">
+        XK_XKWS = #{record.xkXkws,jdbcType=VARCHAR},
+      </if>
+      <if test="record.xkXdrSydw != null">
+        XK_XDR_SYDW = #{record.xkXdrSydw,jdbcType=VARCHAR},
+      </if>
+      <if test="record.xkXdrShzz != null">
+        XK_XDR_SHZZ = #{record.xkXdrShzz,jdbcType=VARCHAR},
+      </if>
+      <if test="record.xkFrZjhm != null">
+        XK_FR_ZJHM = #{record.xkFrZjhm,jdbcType=VARCHAR},
+      </if>
+      <if test="record.xkXdrZjlx != null">
+        XK_XDR_ZJLX = #{record.xkXdrZjlx,jdbcType=VARCHAR},
+      </if>
+      <if test="record.xkXkzs != null">
+        XK_XKZS = #{record.xkXkzs,jdbcType=VARCHAR},
+      </if>
+      <if test="record.xkXkbh != null">
+        XK_XKBH = #{record.xkXkbh,jdbcType=VARCHAR},
+      </if>
+      <if test="record.xkYxqz != null">
+        XK_YXQZ = #{record.xkYxqz,jdbcType=VARCHAR},
+      </if>
+      <if test="record.xkXkjgdm != null">
+        XK_XKJGDM = #{record.xkXkjgdm,jdbcType=VARCHAR},
+      </if>
+      <if test="record.xkLydw != null">
+        XK_LYDW = #{record.xkLydw,jdbcType=VARCHAR},
+      </if>
+      <if test="record.xkLydwdm != null">
+        XK_LYDWDM = #{record.xkLydwdm,jdbcType=VARCHAR},
+      </if>
+      <if test="record.xkFrZjlx != null">
+        XK_FR_ZJLX = #{record.xkFrZjlx,jdbcType=VARCHAR},
+      </if>
+      <if test="record.xkXdrLb != null">
+        XK_XDR_LB = #{record.xkXdrLb,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update licensing
+    set id = #{record.id,jdbcType=VARCHAR},
+      XK_WSH = #{record.xkWsh,jdbcType=VARCHAR},
+      XK_XMMC = #{record.xkXmmc,jdbcType=VARCHAR},
+      XK_SPLB = #{record.xkSplb,jdbcType=VARCHAR},
+      XK_XDR = #{record.xkXdr,jdbcType=VARCHAR},
+      XK_SDR_XYDM = #{record.xkSdrXydm,jdbcType=VARCHAR},
+      XK_SDR_ZZJG = #{record.xkSdrZzjg,jdbcType=VARCHAR},
+      XK_SDR_GSDJ = #{record.xkSdrGsdj,jdbcType=VARCHAR},
+      XK_SDR_SWDJ = #{record.xkSdrSwdj,jdbcType=VARCHAR},
+      XK_SDR_SFZ = #{record.xkSdrSfz,jdbcType=VARCHAR},
+      XK_FR = #{record.xkFr,jdbcType=VARCHAR},
+      XK_JDRQ = #{record.xkJdrq,jdbcType=VARCHAR},
+      XK_JZRQ = #{record.xkJzrq,jdbcType=VARCHAR},
+      XK_JG = #{record.xkJg,jdbcType=VARCHAR},
+      XK_DQZT = #{record.xkDqzt,jdbcType=VARCHAR},
+      DFBM = #{record.dfbm,jdbcType=VARCHAR},
+      FBSJ = #{record.fbsj,jdbcType=VARCHAR},
+      BZ = #{record.bz,jdbcType=VARCHAR},
+      DWID = #{record.dwid,jdbcType=VARCHAR},
+      CMS_ID = #{record.cmsId,jdbcType=VARCHAR},
+      CMS_FBZT = #{record.cmsFbzt,jdbcType=VARCHAR},
+      XK_NR = #{record.xkNr,jdbcType=VARCHAR},
+      SJGXSJ = #{record.sjgxsj,jdbcType=VARCHAR},
+      FJLJ = #{record.fjlj,jdbcType=VARCHAR},
+      GKFW = #{record.gkfw,jdbcType=VARCHAR},
+      FBSJ2 = #{record.fbsj2,jdbcType=VARCHAR},
+      DRBH = #{record.drbh,jdbcType=VARCHAR},
+      YH_ID = #{record.yhId,jdbcType=VARCHAR},
+      SK_WSH_UK = #{record.skWshUk,jdbcType=VARCHAR},
+      FLAG = #{record.flag,jdbcType=VARCHAR},
+      ISSUCC = #{record.issucc,jdbcType=VARCHAR},
+      YDCS = #{record.ydcs,jdbcType=VARCHAR},
+      addTime = #{record.addtime,jdbcType=VARCHAR},
+      FORSQZJID = #{record.forsqzjid,jdbcType=VARCHAR},
+      IDKEY = #{record.idkey,jdbcType=VARCHAR},
+      XK_XKWS = #{record.xkXkws,jdbcType=VARCHAR},
+      XK_XDR_SYDW = #{record.xkXdrSydw,jdbcType=VARCHAR},
+      XK_XDR_SHZZ = #{record.xkXdrShzz,jdbcType=VARCHAR},
+      XK_FR_ZJHM = #{record.xkFrZjhm,jdbcType=VARCHAR},
+      XK_XDR_ZJLX = #{record.xkXdrZjlx,jdbcType=VARCHAR},
+      XK_XKZS = #{record.xkXkzs,jdbcType=VARCHAR},
+      XK_XKBH = #{record.xkXkbh,jdbcType=VARCHAR},
+      XK_YXQZ = #{record.xkYxqz,jdbcType=VARCHAR},
+      XK_XKJGDM = #{record.xkXkjgdm,jdbcType=VARCHAR},
+      XK_LYDW = #{record.xkLydw,jdbcType=VARCHAR},
+      XK_LYDWDM = #{record.xkLydwdm,jdbcType=VARCHAR},
+      XK_FR_ZJLX = #{record.xkFrZjlx,jdbcType=VARCHAR},
+      XK_XDR_LB = #{record.xkXdrLb,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>

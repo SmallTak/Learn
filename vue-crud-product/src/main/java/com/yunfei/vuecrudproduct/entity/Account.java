@@ -3,13 +3,13 @@ package com.yunfei.vuecrudproduct.entity;
 import java.io.Serializable;
 
 /**
- * t_account
+ * account
  * @author 
  */
-public class TAccount implements Serializable {
+public class Account implements Serializable {
     private Integer id;
 
-    private String username;
+    private String userName;
 
     private String password;
 
@@ -25,12 +25,12 @@ public class TAccount implements Serializable {
         this.id = id;
     }
 
-    public String getUsername() {
-        return username;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public String getPassword() {
@@ -60,9 +60,9 @@ public class TAccount implements Serializable {
         if (getClass() != that.getClass()) {
             return false;
         }
-        TAccount other = (TAccount) that;
+        Account other = (Account) that;
         return (this.getId() == null ? other.getId() == null : this.getId().equals(other.getId()))
-            && (this.getUsername() == null ? other.getUsername() == null : this.getUsername().equals(other.getUsername()))
+            && (this.getUserName() == null ? other.getUserName() == null : this.getUserName().equals(other.getUserName()))
             && (this.getPassword() == null ? other.getPassword() == null : this.getPassword().equals(other.getPassword()))
             && (this.getMobile() == null ? other.getMobile() == null : this.getMobile().equals(other.getMobile()));
     }
@@ -72,7 +72,7 @@ public class TAccount implements Serializable {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((getId() == null) ? 0 : getId().hashCode());
-        result = prime * result + ((getUsername() == null) ? 0 : getUsername().hashCode());
+        result = prime * result + ((getUserName() == null) ? 0 : getUserName().hashCode());
         result = prime * result + ((getPassword() == null) ? 0 : getPassword().hashCode());
         result = prime * result + ((getMobile() == null) ? 0 : getMobile().hashCode());
         return result;
@@ -85,7 +85,7 @@ public class TAccount implements Serializable {
         sb.append(" [");
         sb.append("Hash = ").append(hashCode());
         sb.append(", id=").append(id);
-        sb.append(", username=").append(username);
+        sb.append(", userName=").append(userName);
         sb.append(", password=").append(password);
         sb.append(", mobile=").append(mobile);
         sb.append(", serialVersionUID=").append(serialVersionUID);

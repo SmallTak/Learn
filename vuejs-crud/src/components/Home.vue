@@ -19,15 +19,15 @@
         >
       </el-table-column>
       <el-table-column
-        prop="productName"
-        label="耳机名称"
+        prop="xkWsh"
+        label="行政许可文书号"
         header-align="center"
         width="450">
         <template slot-scope="scope">
         <el-popover trigger="hover" placement="top">
-          <p> {{ scope.row.productName }}</p>
+          <p> {{ scope.row.xkWsh }}</p>
           <div slot="reference" class="name-wrapper">
-            <el-tag size="medium">{{ scope.row.productName }}</el-tag>
+            <el-tag size="medium">{{ scope.row.xkWsh }}</el-tag>
           </div>
         </el-popover>
       </template>
@@ -35,23 +35,23 @@
       
       <el-table-column
         prop="price"
-        label="耳机价格"
+        label="许可类别"
         width="250">
         <template slot-scope="scope">
           <el-tooltip content="Top center1" placement="top">
-            <el-tag>{{ scope.row.price }}</el-tag>
+            <el-tag>{{ scope.row.xkSplb }}</el-tag>
           </el-tooltip>
         </template>
       </el-table-column>
       <el-table-column
-        prop="marketPrice"
+        prop="xkXdr"
         align="conter"
-        label="市场价格">
+        label="行政许可相对人">
       </el-table-column>
       <el-table-column
-        prop="place"
+        prop="xkSdrXydm"
         align="conter"
-        label="产品产地">
+        label="统一社会信用代码">
       </el-table-column>
       <el-table-column header-align="conter"  label="操作">
                 <template  slot-scope="scope">

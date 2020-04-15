@@ -18,10 +18,11 @@ Vue.use(ElementUI);
 
 Vue.prototype.$http = axios;
 //配置axios默认属性
-axios.defaults.baseURL ="http://localhost:9090"
+axios.defaults.baseURL ="http://localhost:9090"//项目运行axios的时候会自动加上这个url
 
 Vue.config.productionTip = false
 
+//路由的前置过滤  查看当前请求的路由是否需要认证 该步骤不完善，可能浏览器中存错误的token也可以通过认证的，所以就需要下面的axios的请求拦截器
 router.beforeEach((to,from,next)=>{
   if ((to.meta.reqiredAuth)) {
     var token = localStorage.getItem("jwtToken");
@@ -32,10 +33,10 @@ router.beforeEach((to,from,next)=>{
   }
   next();
 })
-//axios 请求拦截器，将token放入到http header中发送给服务端,在所有的请求之前执行
+//axios 请求拦截器，将token放入到http header中发送给服务端,在所有的请求之前执行将token放入到请求头中，让服务端进行解析
 axios.interceptors.request.use(config => {
   var token = localStorage.getItem("jwtToken");
-  console.log(token);
+  //console.log(token);
   if (token) {
     console.log(token);
     config.headers.Authorization = token;
