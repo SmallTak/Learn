@@ -1,7 +1,7 @@
 package com.yunfei.vuecrudproduct.controller;
 
 import com.yunfei.vuecrudproduct.controller.resoult.ResponseBean;
-import com.yunfei.vuecrudproduct.entity.TAccount;
+import com.yunfei.vuecrudproduct.entity.Account;
 import com.yunfei.vuecrudproduct.service.AccountService;
 import com.yunfei.vuecrudproduct.util.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,11 +18,10 @@ public class AccountController {
     private JwtUtil jwtUtil;
 
     @PostMapping("/login")
-    public ResponseBean login(@RequestBody  TAccount accoun){
+    public ResponseBean login(@RequestBody Account accoun){
 
         try {
-            System.err.println(accoun.getUsername() + accoun.getPassword());
-            TAccount account = accountService.login(accoun.getUsername(), accoun.getPassword());
+            Account account = accountService.login(accoun.getUserName(), accoun.getPassword());
             String token = jwtUtil.createToken(account.getId(),account.getPassword());
             return ResponseBean.success(token);
         } catch (Exception e){

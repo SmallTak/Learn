@@ -3,6 +3,7 @@ package com.yunfei.vuecrudproduct.controller;
 
 import com.github.pagehelper.PageInfo;
 import com.yunfei.vuecrudproduct.controller.resoult.ResponseBean;
+import com.yunfei.vuecrudproduct.entity.Licensing;
 import com.yunfei.vuecrudproduct.entity.Product;
 import com.yunfei.vuecrudproduct.service.AccountService;
 import com.yunfei.vuecrudproduct.service.ExportTest;
@@ -34,8 +35,8 @@ public class HomeController {
 
     @ApiOperation("/home页面")
     @GetMapping
-    public ResponseBean  home(@RequestParam(required = false, name = "p", defaultValue = "1") Integer pageNo){
-        PageInfo<Product> pageInfo =  productService.selectAllProduct(pageNo);
+    public ResponseBean home(@RequestParam(required = false, name = "p", defaultValue = "1") Integer pageNo){
+        PageInfo<Licensing> pageInfo =  productService.selectAllProduct(pageNo);
         return ResponseBean.success(pageInfo);
 
     }

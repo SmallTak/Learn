@@ -22,9 +22,10 @@ public class JwtFilter extends AccessControlFilter {
 
     protected static Logger logger=LoggerFactory.getLogger(JwtFilter.class);
 
-
+    //因为前端使用的是axios，涉及到跨域的问题，用户端第一次发送的是OPTIONS请求，因为所有的请求都是要经过过滤器的，所以我们下面解决的就是跨域问题
     @Override
     protected boolean preHandle(ServletRequest request, ServletResponse response) throws Exception {
+        System.err.println("----------------------------------Origin-filter----------------------------------");
         HttpServletRequest httpServletRequest = (HttpServletRequest) request;
         HttpServletResponse httpServletResponse = (HttpServletResponse) response;
         httpServletResponse.setHeader("Access-control-Allow-Origin",httpServletRequest.getHeader("Origin"));
@@ -51,7 +52,6 @@ public class JwtFilter extends AccessControlFilter {
         //从请求中获得token
         String token = request.getHeader(AUTHORIZATION_HEADER);
         System.err.println("----------------------------------start-filter----------------------------------");
-        System.err.println(token);
 
         if (StringUtils.isEmpty(token)){
             loginError(servletResponse, "请登录后再执行该操作");

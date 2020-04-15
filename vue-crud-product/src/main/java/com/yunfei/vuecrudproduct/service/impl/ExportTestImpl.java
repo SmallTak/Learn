@@ -1,6 +1,6 @@
 package com.yunfei.vuecrudproduct.service.impl;
 
-import com.yunfei.vuecrudproduct.entity.TAccount;
+import com.yunfei.vuecrudproduct.entity.Account;
 import com.yunfei.vuecrudproduct.service.ExportTest;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.stereotype.Service;
@@ -32,7 +32,7 @@ public class ExportTestImpl implements ExportTest {
 
     //写入EXCLE
     @Override
-    public void exportTest(List<TAccount> list,HttpServletResponse response) throws IOException {
+    public void exportTest(List<Account> list, HttpServletResponse response) throws IOException {
         File file=new File("用来测试的表.xlsx");
         Workbook workbook=new XSSFWorkbook();
         //设置表的牙样式
@@ -44,10 +44,10 @@ public class ExportTestImpl implements ExportTest {
         row0.createCell(0).setCellValue("编号");
         row0.createCell(1).setCellValue("名字");
         //把查询结果放入到对应的列
-        for (TAccount account : list) {
+        for (Account account : list) {
             Row row=sheet.createRow(index++);
             row.createCell(0).setCellValue(account.getId());
-            row.createCell(1).setCellValue(account.getUsername());
+            row.createCell(1).setCellValue(account.getUserName());
         }
 
         for(int m=0;m<=sheet.getLastRowNum();m++){

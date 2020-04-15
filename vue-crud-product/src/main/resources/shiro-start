@@ -1,1 +1,5 @@
-1.
+1：用户请求AccountController,首先获得用户账号密码，并查询验证是否正确。接着使用用户id和密码创建jwt，并返回给vue，到home页
+    1.1：用户发起axios请求的同时首先会经过过滤器，过滤器首先会从请求头中获得token，接着shiro的login方法将token传入shiro。
+    1.2：因为JwtToken实现了AuthenticationToken该接口，所以relam中doGetAuthenticationInfo可以直接获得token
+    1.3：
+2：

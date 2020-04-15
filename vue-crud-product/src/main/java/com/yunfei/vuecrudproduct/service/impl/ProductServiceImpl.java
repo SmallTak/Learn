@@ -2,14 +2,11 @@ package com.yunfei.vuecrudproduct.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.yunfei.vuecrudproduct.entity.Product;
-import com.yunfei.vuecrudproduct.entity.ProductExample;
-import com.yunfei.vuecrudproduct.entity.TAccount;
-import com.yunfei.vuecrudproduct.entity.TAccountExample;
+import com.yunfei.vuecrudproduct.entity.*;
+import com.yunfei.vuecrudproduct.mapper.AccountMapper;
+import com.yunfei.vuecrudproduct.mapper.LicensingMapper;
 import com.yunfei.vuecrudproduct.mapper.ProductMapper;
-import com.yunfei.vuecrudproduct.mapper.TAccountMapper;
 import com.yunfei.vuecrudproduct.service.ProductService;
-import com.yunfei.vuecrudproduct.shiro.filter.JwtFilter;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,16 +25,19 @@ public class ProductServiceImpl implements ProductService {
     private ProductMapper productMapper;
 
     @Autowired
-    private TAccountMapper accountMapper;
+    private AccountMapper accountMapper;
+
+    @Autowired
+    private LicensingMapper licensingMapper;
 
     @Override
-    public PageInfo<Product> selectAllProduct(Integer pageNo) {
+    public PageInfo<Licensing> selectAllProduct(Integer pageNo) {
         PageHelper.startPage(pageNo,10);
-        ProductExample productExample = new ProductExample();
+        LicensingExample licensingExample = new LicensingExample();
         //productExample.setOrderByClause("id DESC");
-        List<Product> products = productMapper.selectByExample(productExample);
+        List<Licensing> Licensings = licensingMapper.selectByExample(licensingExample);
         logger.debug("select all");
-        return new PageInfo<>(products);
+        return new PageInfo<>(Licensings);
     }
 
     @Override

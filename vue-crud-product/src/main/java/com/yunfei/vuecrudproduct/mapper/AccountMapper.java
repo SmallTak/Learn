@@ -3,8 +3,11 @@ package com.yunfei.vuecrudproduct.mapper;
 import com.yunfei.vuecrudproduct.entity.Account;
 import com.yunfei.vuecrudproduct.entity.AccountExample;
 import java.util.List;
+
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+@Mapper
 public interface AccountMapper {
     long countByExample(AccountExample example);
 

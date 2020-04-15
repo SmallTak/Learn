@@ -1,8 +1,8 @@
 package com.yunfei.vuecrudproduct.service.impl;
 
-import com.yunfei.vuecrudproduct.entity.TAccount;
-import com.yunfei.vuecrudproduct.entity.TAccountExample;
-import com.yunfei.vuecrudproduct.mapper.TAccountMapper;
+import com.yunfei.vuecrudproduct.entity.Account;
+import com.yunfei.vuecrudproduct.entity.AccountExample;
+import com.yunfei.vuecrudproduct.mapper.AccountMapper;
 import com.yunfei.vuecrudproduct.service.AccountService;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,14 +14,15 @@ import java.util.List;
 public class AccountServiceImpl implements AccountService {
 
     @Autowired
-    private TAccountMapper accountMapper;
+    private AccountMapper accountMapper;
 
     @Override
-    public TAccount login(String userName, String password) {
-        TAccountExample accountExample = new TAccountExample();
-        accountExample.createCriteria().andUsernameEqualTo(userName);
-        List<TAccount> tAccounts = accountMapper.selectByExample(accountExample);
-        TAccount account = tAccounts != null && !tAccounts.isEmpty() ? tAccounts.get(0) : null;
+    public Account login(String userName, String password) {
+        AccountExample accountExample = new AccountExample();
+        accountExample.createCriteria().andUserNameEqualTo(userName);
+        List<Account> tAccounts = accountMapper.selectByExample(accountExample);
+        System.err.println(tAccounts.toString()+ DigestUtils.md5Hex(password));
+        Account account = tAccounts != null && !tAccounts.isEmpty() ? tAccounts.get(0) : null;
         if(account == null) {
             throw new RuntimeException("账号或密码错误");
         } else {
@@ -34,14 +35,14 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
-    public TAccount findAccountById(Integer accountId) {
-        TAccount account = accountMapper.selectByPrimaryKey(accountId);
+    public Account findAccountById(Integer accountId) {
+        Account account = accountMapper.selectByPrimaryKey(accountId);
         return account;
     }
 
     @Override
-    public List<TAccount> findAccountAll() {
-        return accountMapper.selectByExample(new TAccountExample());
+    public List<Account> findAccountAll() {
+        return accountMapper.selectByExample(new AccountExample());
     }
 
 }

@@ -1,6 +1,7 @@
 package com.yunfei.vuecrudproduct.service;
 
 import com.github.pagehelper.PageInfo;
+import com.yunfei.vuecrudproduct.entity.Licensing;
 import com.yunfei.vuecrudproduct.entity.Product;
 
 import java.util.List;
@@ -12,7 +13,7 @@ public interface ProductService {
      * @param []
      * @return com.github.pagehelper.PageInfo<com.yunfei.vuecrudproduct.entity.Product>
      */
-    PageInfo<Product> selectAllProduct(Integer pageNo);
+    PageInfo<Licensing> selectAllProduct(Integer pageNo);
 
     /*
      *

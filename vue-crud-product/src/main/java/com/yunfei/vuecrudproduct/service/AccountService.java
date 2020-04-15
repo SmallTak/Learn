@@ -1,6 +1,6 @@
 package com.yunfei.vuecrudproduct.service;
 
-import com.yunfei.vuecrudproduct.entity.TAccount;
+import com.yunfei.vuecrudproduct.entity.Account;
 
 import java.util.List;
 
@@ -12,7 +12,7 @@ public interface AccountService {
      * @param [userName, password]  
      * @return com.yunfei.vuecrudproduct.entity.TAccount  
      */ 
-    TAccount login(String userName, String password);
+    Account login(String userName, String password);
 
     /*  根据id查找account
      *
@@ -20,7 +20,7 @@ public interface AccountService {
      * @param [accountId]  
      * @return org.apache.shiro.authc.Account  
      */ 
-    TAccount findAccountById(Integer accountId);
+    Account findAccountById(Integer accountId);
 
     /*  查找所有account
      *
@@ -28,5 +28,5 @@ public interface AccountService {
      * @param []
      * @return java.util.List<com.yunfei.vuecrudproduct.entity.TAccount>
      */
-    List<TAccount> findAccountAll();
+    List<Account> findAccountAll();
 }

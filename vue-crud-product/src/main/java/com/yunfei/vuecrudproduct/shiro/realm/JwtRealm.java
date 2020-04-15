@@ -1,6 +1,6 @@
 package com.yunfei.vuecrudproduct.shiro.realm;
 
-import com.yunfei.vuecrudproduct.entity.TAccount;
+import com.yunfei.vuecrudproduct.entity.Account;
 import com.yunfei.vuecrudproduct.service.AccountService;
 import com.yunfei.vuecrudproduct.shiro.token.JwtToken;
 import com.yunfei.vuecrudproduct.util.JwtUtil;
@@ -21,6 +21,7 @@ public class JwtRealm extends AuthorizingRealm {
 
     @Override
     public boolean supports(AuthenticationToken token) {
+        System.err.println("----------------------------------jwt-----------------------------------");
         return token instanceof JwtToken;//说明该realm仅支持的token   平常用的是UsernamePasswordToken
     }
 
@@ -43,14 +44,19 @@ public class JwtRealm extends AuthorizingRealm {
      */
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken) throws AuthenticationException {
+        System.err.println("----------------------------------login验证-----------------------------------");
+        System.err.println("authenticationToken.getCredentials::" + authenticationToken.getCredentials());
+        System.err.println("authenticationToken.getPrincipal::" + authenticationToken.getPrincipal());
         JwtToken jwtToken = (JwtToken) authenticationToken;
+        System.err.println("从AuthenticationToken强转得到的token::" + authenticationToken.getPrincipal());
+
         //从jwttoken中取出token
         String token = (String) jwtToken.getPrincipal();
 
         //根据token取出id
         Integer accountId = jwtUtil.getUserIdFromToken(token);
 
-        TAccount account = accountService.findAccountById(accountId);
+        Account account = accountService.findAccountById(accountId);
         if (account == null){
             throw new UnknownAccountException("该token不存在");
         }else {

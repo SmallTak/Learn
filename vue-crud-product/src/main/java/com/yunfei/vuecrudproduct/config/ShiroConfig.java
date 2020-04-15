@@ -27,6 +27,7 @@ public class ShiroConfig {
 
     @Bean
     public DefaultWebSecurityManager defaultWebSecurityManager(Realm realm){
+        System.err.println("----------------------------------outsession----------------------------------");
 
         DefaultWebSecurityManager defaultWebSecurityManager = new DefaultWebSecurityManager();
         //使用自己定义realm
